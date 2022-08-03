@@ -1,0 +1,99 @@
+<div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand">My Restorant</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href='/menu' >Menu</a>          
+          </li>
+          <li class="nav-item">          
+            <a class="nav-link active" aria-current="page" href="/cart">my Cart 🛒</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <Box sx={{ bgcolor: 'background.paper', width: 1000 }}>
+      <AppBar position="static">
+
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor="secondary"
+          textColor="inherit"
+          variant="fullWidth"
+          aria-label="full width tabs example"
+        >
+          {categories.map((cat)=>(<Tab label={ <>
+           <img src={cat.imageUrl} key={cat.id} className="profile-img" width="200px" height="200px" style={{ marginRight: "10px" }} />          
+            {cat.name}
+             </>} {...a11yProps(cat.id)} />))}
+          
+        </Tabs>
+
+      </AppBar>
+      {categories.map((category)=> ( 
+      <TabPanel value={value} index={category.id-1} key={category.id}  >      
+        {dish.map((dish,i)=> ( 
+          <div>{dish.category === category.id ? (
+            <div class="card" >
+                <img src={dish.imageUrl} class="profile-img" width="300px" height="300px"/>
+                <div class="card-body">
+                  <h5 class="card-title">{dish.name}</h5>
+                  <p class="card-text">{dish.description}</p>
+                  <p class="card-text">{dish.price} ₪</p>
+                  <div>
+                    <button  className={
+              newOrder.dishes.indexOf(dish.id) !== -1 ? "btn btn-primary" : "btn-alert"
+            }  onClick={() => selectDish(dish.id)}>
+                       put to my cart
+                     </button>
+      </div>
+                </div>
+            </div> ) : null}
+          </div>  ))}      
+      </TabPanel>))}
+      <button  className= "btn btn-primary" style={{
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 10,
+        position: "fixed",
+        bottom: 70,
+        right: 40,
+        backgroundColor: "#26653A",
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+    }}
+    onClick={makeOrder}       
+          >
+                      <Link to="/cart/+order.id" >About</Link>
+
+                     </button>
+     
+    </Box>
+ </div>
+
+
+<Link  to="/menu" style={{color:"white"}}> Click to start</Link>
+
+
+
+ useEffect((orderId) => {
+    fetch(`http://127.0.0.1:8000/api/orders/`+orderId),    
+      .then((res) => res.json())
+      .then((data) => {
+        setNewOrder(data);
+      });
+  }, []);
+
+{
+                  newOrder.dishes.indexOf(dish.id) !== -1 ? "btn btn-primary" : "btn-alert"
+                } 

@@ -1,0 +1,21 @@
+.main{  
+    position:absolute; 
+    margin-left:-100px;
+    left:50%;   
+    bottom:200px;      
+}
+.butt{    
+    width: 300px;  
+    height :50px;    
+}
+.imgf { 
+    background-image: 
+    url(
+  "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F9%2F2021%2F05%2F17%2Fgarlic-butter-prime-rib-FT-RECIPE0621.jpg&q=60");
+    background-size: "cover";
+    height: 100vh;
+    margin-top: -70px;
+    font-size: "cover";
+    background-repeat:no-repeat; 
+  }
+  
